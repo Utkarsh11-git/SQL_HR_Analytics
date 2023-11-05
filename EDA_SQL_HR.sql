@@ -7,17 +7,17 @@ select * from location;
 -- 2. Display any 5 random records
 select * from eda_hr order by rand() limit 5;
 
--- 3. Edit the ID column
+-- 3. Rename the ID column
 alter table eda_hr change column ï»¿id id varchar(10);
 
 -- 4. Find the no of occurrences of each state
 select location_state, count(location_state) from eda_hr group by location_state;
 
--- 5. Find the branch with the top 5 highest average salary across all departments.
+-- 5. Find the branch with the top 5 highest average salaries across all departments.
 select department,avg(salary) as avg_salary from eda_hr group by department order by avg_salary desc limit 5;
 
 -- 6. Find the sum of all salaries across all departments and locations
-select department,location,sum(salary) from eda_hr group by department, location 
+select department,location,sum(salary) as total_salary from eda_hr group by department, location 
 order by department, location;
 
 -- 7. Display the first name, last name, age, gender of the youngest employee
@@ -27,8 +27,10 @@ select first_name,last_name,year(curdate())-year(str_to_date(birthdate,'%m/%d/%Y
 select race,concat(round((count(race)/(select count(race) from eda_hr))*100,2),'%') as percentage from eda_hr group by race;
 
 -- 9. What is the age distribution of employees in the company?
--- Add a new column to calculate Age
+
+-- Create a new column to calculate Age
 alter table eda_hr add column Age float;
+
 -- Calculate the age for each employee
 update eda_hr set Age=
 year(curdate())-year(str_to_date(birthdate,'%m/%d/%Y'));
@@ -82,8 +84,10 @@ select e1.first_name,e1.last_name,e1.department,e1.jobtitle,e1.salary from eda_h
 on e1.department=e2.department where e1.salary>e2.avg_salary;
 
 -- 21. Write a query to display the details of the employees who work in the capital city of their respective states
--- Rename the capital_city column
+
+-- Rename the capital_city column to correct the spelling
 alter table location rename column captial_city to capital_city;
+
 select e1.first_name,e1.last_name,l1.capital_city,e1.location_state,e1.salary from eda_hr as e1 inner join location as l1 on e1.location_city=l1.capital_city;
 
 -- 22. Write a query to display the details of those who work in multiple zones
@@ -103,7 +107,7 @@ rank() over (order by avg(salary) desc) as department_rank from eda_hr group by 
 -- 25. Write a query to calculate the average age of employees within each location city and display the location city along with its corresponding average age.
 select location_city,avg(age) from eda_hr group by location_city
 order by location_city;
--- OR
+-- USING WINDOWS FUNCTION
 select distinct location_city,avg(age) over (partition by location_city)
 as avg_age from eda_hr;
 
