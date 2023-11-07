@@ -32,7 +32,8 @@ FROM eda_hr GROUP BY Age_Group ORDER BY Age_Group;
 ```
 20. Find the first name, department, and job title of employees whose salary is greater than the average salary of employees in the same department.
 ```sql
-SELECT e1.first_name,e1.last_name,e1.department,e1.jobtitle,e1.salary FROM eda_hr as e1 INNER JOIN
+SELECT e1.first_name,e1.last_name,e1.department,e1.jobtitle,e1.salary
+FROM eda_hr as e1 INNER JOIN
 (SELECT department,avg(salary) as avg_salary FROM eda_hr GROUP BY department) as e2
 ON e1.department=e2.department WHERE e1.salary>e2.avg_salary;
 ```
