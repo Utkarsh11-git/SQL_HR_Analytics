@@ -7,6 +7,7 @@ The HR department want to use SQL to understand different analytical requirement
 ### Skills Applied
 - Aggregations
 - JOINs
+- Sub Queries
 - Window Functions
 - Data Manipulation
 - Data Analysis
