@@ -1,3 +1,5 @@
+<p align="center"><img src="https://media.licdn.com/dms/image/D4E2DAQHzE-UP1jdx6g/profile-treasury-image-shrink_1920_1920/0/1694518991694?e=1700337600&v=beta&t=SWvo1BfkZ_Ekrkmg5ic6_jsdFA4XVVvBElRF-p9UQi8" width="550" height="350"></p>
+
 # Analysis of a HR Database using SQL
 The project's goal is to use SQL queries to examine employee data and obtain insights into various areas of the workforce. By leveraging the dataset, the project will address questions related to employee demographics, job roles, salary distribution, and employee tenure. The analysis will provide valuable information to HR and management for workforce planning and decision-making.
 
