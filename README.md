@@ -9,26 +9,25 @@ The HR department want to use SQL to understand different analytical requirement
 - JOINs
 - Sub Queries
 - Window Functions
-- Data Manipulation
-- Data Analysis
+- CTEs
 
 ### Interesting Queries
 7. Display the first name, last name, age, gender of the youngest employee
 ```sql
-SELECT first_name,last_name,year(curdate())-year(str_to_date(birthdate,'%m/%d/%Y')) as Age, gender
+SELECT first_name,last_name,YEAR(curdate())-YEAR(str_to_date(birthdate,'%m/%d/%Y')) as Age, gender
 FROM eda_hr ORDER BY Age LIMIT 1;
 ```
 9. What is the age distribution of employees in the company?
 
 ```sql
 UPDATE eda_hr SET Age=
-year(curdate())-year(str_to_date(birthdate,'%m/%d/%Y'));
+YEAR(curdate())-YEAR(str_to_date(birthdate,'%m/%d/%Y'));
 -- Distribution using case
 SELECT CASE
-when Age>20 and Age<30 then '20-30'
-when Age>=30 and Age<40 then '30-40'
-when Age>=40 and Age<50 then '40-50'
-when Age>=50 then '50+' end as Age_Group, count(*) as count
+WHEN Age>20 and Age<30 THEN '20-30'
+WHEN Age>=30 and Age<40 THEN '30-40'
+WHEN Age>=40 and Age<50 THEN '40-50'
+WHEN Age>=50 THEN '50+' end as Age_Group, COUNT(*) as COUNT
 FROM eda_hr GROUP BY Age_Group ORDER BY Age_Group;
 ```
 20. Find the first name, department, and job title of employees whose salary is greater than the average salary of employees in the same department.
@@ -38,7 +37,12 @@ FROM eda_hr as e1 INNER JOIN
 (SELECT department,avg(salary) as avg_salary FROM eda_hr GROUP BY department) as e2
 ON e1.department=e2.department WHERE e1.salary>e2.avg_salary;
 ```
-
+-- 27 Employee WITH the second highest salary department-wise
+```sql
+WITH CTE as
+(SELECT first_name,salary,department,dense_rank() OVER(PARTITION BY department ORDER BY salary) as rnk FROM eda_hr)
+SELECT * FROM CTE WHERE rnk=2;
+```
 ### Tools and Technologies:
 * SQL (Structured Query Language) for data querying and analysis.
 * Database management system (MySQL, PostgreSQL) to store and query the dataset.
