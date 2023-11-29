@@ -37,7 +37,7 @@ FROM eda_hr as e1 INNER JOIN
 (SELECT department,avg(salary) as avg_salary FROM eda_hr GROUP BY department) as e2
 ON e1.department=e2.department WHERE e1.salary>e2.avg_salary;
 ```
--- 27 Employee WITH the second highest salary department-wise
+27 Employee WITH the second highest salary department-wise
 ```sql
 WITH CTE as
 (SELECT first_name,salary,department,dense_rank() OVER(PARTITION BY department ORDER BY salary) as rnk FROM eda_hr)
