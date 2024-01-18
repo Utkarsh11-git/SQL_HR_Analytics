@@ -1,17 +1,17 @@
 # Analysis of a HR Database using SQL
 The project's goal is to use SQL queries to examine employee data and obtain insights into various areas of the workforce. By leveraging the dataset, the project will address questions related to employee demographics, job roles, salary distribution, and employee tenure. The analysis will provide valuable information to HR and management for workforce planning and decision-making.
 
-### Problem Statement
+### ❓ Problem Statement
 The HR department want to use SQL to understand different analytical requirements, starting with fundamental data exploration, ensuring data accuracy by altering column types, and finding key metrics such as average salaries across branches, tenure distribution, racial representation, age demographics, and employee recruitment trends. These insights will be fundamental in making informed decisions and designing efficient HR strategies.
 
-### Skills Applied
+### 🛠️ Skills Applied
 - Aggregations
 - JOINs
 - Sub Queries
 - Window Functions
 - CTEs
 
-### Interesting Queries
+### 💡Interesting Queries
 7. Display the first name, last name, age, gender of the youngest employee
 ```sql
 SELECT first_name,last_name,YEAR(curdate())-YEAR(str_to_date(birthdate,'%m/%d/%Y')) as Age, gender
@@ -43,10 +43,10 @@ WITH CTE as
 (SELECT first_name,salary,department,dense_rank() OVER(PARTITION BY department ORDER BY salary) as rnk FROM eda_hr)
 SELECT * FROM CTE WHERE rnk=2;
 ```
-### Tools and Technologies:
+### 🛠️ Tools and Technologies:
 * SQL (Structured Query Language) for data querying and analysis.
 * Database management system (MySQL, PostgreSQL) to store and query the dataset.
 
-### Deliverables:
+### 💡Deliverables:
 * SQL queries and scripts used for data analysis.
 * SQL queries that answer specific HR-related questions.
