@@ -47,6 +47,6 @@ SELECT * FROM CTE WHERE rnk=2;
 * SQL (Structured Query Language) for data querying and analysis.
 * Database management system (MySQL, PostgreSQL) to store and query the dataset.
 
-### 💡Deliverables:
+### 💡 Deliverables:
 * SQL queries and scripts used for data analysis.
 * SQL queries that answer specific HR-related questions.
